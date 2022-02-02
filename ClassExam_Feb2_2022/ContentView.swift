@@ -19,16 +19,18 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack{
-                Spacer()
                 Text("Every Government Form Ever")
                     .font(.title)
                     .fontWeight(.medium)
-                    .padding(.bottom, 50.0)
+                    .padding(.vertical, 30.0)
+                Spacer()
+                    .frame(height: 50)
                 VStack{
                     HStack {
                         Text("Name: ")
                         TextField("", text: $name)
                     }
+                    .frame(width: 300, height: 40)
                     .padding(.all, 20)
                     .background(Color.gray)
                     .cornerRadius(10)
@@ -37,24 +39,28 @@ struct ContentView: View {
                         Text("Nationality: ")
                         TextField("", text: $nationality)
                     }
+                    .frame(width: 300, height: 40)
                     .padding(.all, 20)
                     .background(Color.gray)
                     .cornerRadius(10)
-                    
-                    if showText == true {
-                        Text("Name: " + name)
-                        Text("Nationality: " + nationality)
-                    }
                 }
                 
+                if showText {
+                    VStack(alignment: .leading){
+                        Text("Name: " + name)
+                            .padding(.trailing, 205.0)
+                            
+                        Text("Nationality: " + nationality)
+                            .padding(.trailing, 195.0)
+                            
+                    }
+                    
+                }
                 
-                
-                
+                Spacer()
                 HStack{
                     Spacer()
                     Spacer()
-                    Spacer()
-                    
                     Button {
                         submitHandle()
                     } label: {
@@ -65,14 +71,20 @@ struct ContentView: View {
                             .cornerRadius(20)
                     }
                     Spacer()
-                    Spacer()
-                    Circle()
-                        .fill(Color.gray)
-                        .frame(width: 80, height: 80)
-                    Spacer()
-                }.padding(/*@START_MENU_TOKEN@*/.all, 50.0/*@END_MENU_TOKEN@*/)
-                Spacer()
+                    Button(action: {
+                                print("Round Action")
+                                }) {
+                                Text("+")
+                                    .frame(width: 70, height: 70)
+                                    .foregroundColor(Color.black)
+                                    .background(Color.gray)
+                                    .clipShape(Circle())
+                                }
+                                .padding([.bottom, .trailing], 10.0)
+                }
+                
             }
+            
         }
     }
     func submitHandle(){
